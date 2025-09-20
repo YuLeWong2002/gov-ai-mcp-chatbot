@@ -1,0 +1,9 @@
+2025-09-20 13:36:53,293 - INFO - 🚀 Starting complete MyJPJ FAQ scraping with perfect formatting...
+2025-09-20 13:36:53,293 - INFO - 🔍 Testing connection to MyJPJ FAQ...
+2025-09-20 13:37:01,708 - WARNING - Retrying (Retry(total=4, connect=None, read=None, redirect=None, status=None)) after connection broken by 'RemoteDisconnected('Remote end closed connection without response')': /faq
+2025-09-20 13:37:08,518 - WARNING - Retrying (Retry(total=3, connect=None, read=None, redirect=None, status=None)) after connection broken by 'RemoteDisconnected('Remote end closed connection without response')': /faq
+2025-09-20 13:37:22,022 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'RemoteDisconnected('Remote end closed connection without response')': /faq
+2025-09-20 13:37:48,666 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'RemoteDisconnected('Remote end closed connection without response')': /faq
+2025-09-20 13:38:37,170 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'RemoteDisconnected('Remote end closed connection without response')': /faq
+2025-09-20 13:38:37,763 - ERROR - ❌ Connection Error: HTTPSConnectionPool(host='myjpj.jpj.gov.my', port=443): Max retries exceeded with url: /faq (Caused by ProtocolError('Connection aborted.', RemoteDisconnected('Remote end closed connection without response')))
+2025-09-20 13:38:37,764 - INFO - 💡 Solutions: Check internet, try VPN, verify website status
