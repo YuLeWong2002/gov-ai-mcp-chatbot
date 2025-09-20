@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Stripe Checkout Demo</title>
+</head>
+<body>
+  <button id="checkout">Pay $5</button>
+
+  <script>
+    document.getElementById("checkout").addEventListener("click", async () => {
+      // POST to FastAPI endpoint
+      const res = await fetch("http://localhost:8000/create-checkout-session", {
+        method: "POST"
+      });
+      // If FastAPI responds with redirect, browser won't auto-follow from fetch
+      // So instead, just open the returned URL in the same tab
+      if (res.redirected) {
+        window.location.href = res.url;
+      } else {
+        const text = await res.text();
+        console.log("Response:", text);
+      }
+    });
+  </script>
+</body>
+</html>
