@@ -6,6 +6,7 @@ from mysql.connector import Error
 from datetime import datetime, date
 import os
 from decimal import Decimal
+from mangum import Mangum
 
 # Pydantic models
 class VehicleLicense(BaseModel):
@@ -54,7 +55,7 @@ DB_CONFIG = {
     'charset': 'utf8mb4'
 }
 
-app = FastAPI(title="Government Vehicle Management System", version="1.0.0")
+app = FastAPI(title="Government Vehicle Management System", version="1.0.0", root_path="/jpj")
 
 def get_db_connection():
     """Create database connection with RDS-specific settings"""
@@ -441,6 +442,4 @@ async def get_summary_stats():
         cursor.close()
         close_db_connection(connection)
 
-if __name__ == "__main__":
-    import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+handler = Mangum(app)
