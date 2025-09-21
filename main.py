@@ -7,22 +7,21 @@ app = FastAPI(title="Twilio WhatsApp + Bedrock AI Demo")
 
 @app.post("/whatsapp")
 async def whatsapp_webhook(From: str = Form(...), Body: str = Form(...)):
-    """
-    Receive WhatsApp messages from Twilio sandbox, call Bedrock AI, reply.
-    """
-    print(f"Received message from {From}: {Body}")
+    print(f"✅ Received message from {From}: {Body}")
 
-    # Prepare Bedrock format
     messages = [{"role": "user", "content": [{"text": Body}]}]
 
-    # Get AI response
-    response = chat_with_bedrock(messages)
-    ai_reply = extract_text(response) or "Sorry, I couldn't process that."
+    try:
+        response = chat_with_bedrock(messages)
+        print("📥 Raw Bedrock response:", response)
+        ai_reply = extract_text(response)
+        print("🤖 Extracted AI reply:", ai_reply)
+    except Exception as e:
+        print("❌ Error calling Bedrock:", e)
+        ai_reply = "Sorry, I couldn’t process that."
 
-    # Send WhatsApp reply via Twilio
-    send_whatsapp_message(to=From, body=ai_reply)
-
-    # Twilio requires a 200 OK response; optional XML reply
     twiml_resp = MessagingResponse()
-    twiml_resp.message("Message received and processed ✅")
+    twiml_resp.message(ai_reply or "No reply from Bedrock")
     return str(twiml_resp)
+
+
