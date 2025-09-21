@@ -5,6 +5,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+# Init session and client
 session = boto3.Session(profile_name=os.getenv("AWS_PROFILE"))
 client = session.client("bedrock-runtime", region_name=os.getenv("AWS_REGION"))
 
@@ -15,6 +16,9 @@ def chat_with_bedrock(
     temperature=0.2,
     top_p=0.9,
 ):
+    """
+    Call Amazon Nova with chat-style messages.
+    """
     payload = {
         "messages": messages,
         "system": [{"text": "You are a helpful assistant."}],
@@ -27,16 +31,22 @@ def chat_with_bedrock(
 
     resp = client.invoke_model(
         modelId=model_id,
-        body=json.dumps(payload).encode("utf-8"),
+        body=json.dumps(payload),
         contentType="application/json",
         accept="application/json",
     )
 
-    out = json.loads(resp["body"].read())
-    return out
+    return json.loads(resp["body"].read())
+
 
 def extract_text(response):
+    """
+    Extract the assistant's reply text from Nova response.
+    """
     try:
-        return response["output"]["message"]["content"][0]["text"]
-    except (KeyError, IndexError, TypeError):
+        # Nova replies are in response["output"]["message"]["content"]
+        contents = response["output"]["message"]["content"]
+        texts = [c.get("text") for c in contents if c.get("text")]
+        return "\n".join(texts) if texts else None
+    except Exception:
         return None
