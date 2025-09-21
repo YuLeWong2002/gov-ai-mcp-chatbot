@@ -1,0 +1,8 @@
+# Twilio Credentials
+TWILIO_ACCOUNT_SID=your_twilio_account_sid
+TWILIO_AUTH_TOKEN=your_twilio_auth_token
+TWILIO_WHATSAPP_NUMBER=whatsapp:+14155238886
+
+# Bedrock AWS SSO profile
+AWS_PROFILE=awsisb_IsbUsersPS
+AWS_REGION=us-east-1
