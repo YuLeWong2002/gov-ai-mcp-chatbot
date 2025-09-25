@@ -1,6 +1,9 @@
 # Government Chatbot: AI-Enhanced Services with Model Context Protocol
 
-![Chatbot Demo](docs/images/demo1.png)(docs/images/demo2.png)(docs/images/demo3.png)(docs/images/demo4.png)  
+![Chatbot Demo](docs/images/demo1.png)
+![Chatbot Demo](docs/images/demo2.png)
+![Chatbot Demo](docs/images/demo3.png)
+![Chatbot Demo](docs/images/demo4.png)
 *A WhatsApp-based AI chatbot for government services (license renewal, summons payment, and more).*
 
 ---
